@@ -1,0 +1,9 @@
+#weatherbox{
+    background-color: gray;
+}
+
+
+#weatherlist{
+    list-style: none;
+    display: none;
+}

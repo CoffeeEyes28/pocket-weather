@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Pocket Weather</title>
+</head>
+<body>
+    <form id="form">
+    <input type="text" placeholder='New York' id="search">
+    <pre> </pre>
+    <button type="submit">Search</button>
+</form>
+
+
+
+<div id="searchHistory">
+    <ul id="searchList">
+
+    </ul>
+</div>
+
+<div id="weatherbox">
+    <h2 id="location"></h2>
+    <img id="weathercon">
+   <ul id="weatherlist">
+    <li id="current_temp"></li>
+    <li id="current_wind"></li>
+    <li id="current_humidity"></li>
+    <li id="current_uv"></li>
+   </ul>
+
+</div>
+
+
+
+<script src="./assets/js/logic.js"></script>
+</body>
+</html>
