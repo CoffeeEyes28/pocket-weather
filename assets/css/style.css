@@ -1,4 +1,5 @@
 #weatherbox{
+    display: none;
     background-color: gray;
 }
 
@@ -6,4 +7,12 @@
 #weatherlist{
     list-style: none;
     display: none;
+}
+
+#searchHistory{
+    display: none;
+}
+
+#searchList{
+    list-style: none;
 }

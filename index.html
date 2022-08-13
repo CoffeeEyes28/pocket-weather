@@ -4,26 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="bootstrap" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Pocket Weather</title>
+    <title>Weather Pocket</title>
 </head>
+<header>
+    <h1>Weather Pocket</h1>
+</header>
 <body>
+<h2>Search Your City</h2>
     <form id="form">
     <input type="text" placeholder='New York' id="search">
     <pre> </pre>
     <button type="submit">Search</button>
 </form>
 
-
-
-<div id="searchHistory">
-    <ul id="searchList">
-
-    </ul>
-</div>
-
 <div id="weatherbox">
-    <h2 id="location"></h2>
+    <h3 id="location"></h3>
+    <h4 id="current_day"></h4>
     <img id="weathercon">
    <ul id="weatherlist">
     <li id="current_temp"></li>
@@ -34,8 +32,26 @@
 
 </div>
 
+<div id="searchHistory">
+    <ul id="searchList">
+    <li ><button id="search1"></button></li>
+    <br>
+    <li ><button id="search2"></button></li>
+    <br>
+    <li><button  id="search3"></button></li>
+    <br>
+    <li><button  id="search4"></button></li>
+    <br>
+    <li ><button id="search5"></button></li>
+    <br>
+    <li ><button id="search6"></button></li>
+    </ul>
+    <br>
+    <button id="clear">Clear History</button>
+</div>
 
-
+<script src="./assets/js/moment.js"></script>
+<script src="./assets/js/moment-timezone-with-data-10-year-range.js"></script>
 <script src="./assets/js/logic.js"></script>
 </body>
 </html>

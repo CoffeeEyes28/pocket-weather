@@ -1,15 +1,35 @@
 
+
+// variables
 var search = document.getElementById('search')
 
 var formEl = document.getElementById('form')
 
+var weatherBox = document.getElementById('weatherbox')
+
+var currentDay = document.getElementById('current_day')
+
+var weatherList = document.getElementById('weatherlist')
+
 var searchHistory = document.getElementById('searchHistory')
+
+var searchList = document.getElementById('searchList')
 
 var ulEl = document.getElementById('searchList')
 
-var weatherBox = document.getElementById('weatherbox')
+var first = document.getElementById('search1')
 
-var weatherList = document.getElementById('weatherlist')
+var second = document.getElementById('search2')
+
+var third = document.getElementById('search3')
+
+var fourth = document.getElementById('search4')
+
+var fifth = document.getElementById('search5')
+
+var sixth = document.getElementById('search6')
+
+var clear = document.getElementById('clear')
 
 function storeSearch(){
     var allSearches = JSON.parse(localStorage.getItem('allSearches'));
@@ -26,41 +46,96 @@ function storeSearch(){
 
 
 function renderSearch(){
-
+    searchHistory.style.display = 'block'
+    
+    
     var getObj = localStorage.getItem('allSearches')
     var loopObj = JSON.parse(getObj)
-
+    loopObj.reverse();
+    
     for( i = 0; i < loopObj.length; i++){
-        var stored = loopObj[i].search
-        var liEl = document.createElement('li')
-        ulEl.appendChild(liEl)
-        var btn = document.createElement('button')
-        btn.textContent = stored
-        liEl.appendChild(btn)
-        var brEl = document.createElement('br')
-        ulEl.appendChild(brEl)
+
+       
+        
+        if (loopObj[0] === undefined){
+            first.style.display ='none'
+        }else{
+            first.style.display = 'block'
+            first.textContent = loopObj[0].search.toUpperCase()
+        }
+        
+       
+        
+        
+        if (loopObj[1] === undefined ){
+            second.style.display = 'none'
+        }else{
+            second.style.display ='block'
+            second.textContent = loopObj[1].search.toUpperCase()
+        }
+        
+       
+       
+        if (loopObj[2] === undefined){
+            third.style.display = 'none'
+        }else{
+            third.style.display = 'block'
+            third.textContent = loopObj[2].search.toUpperCase()
+        }
+
+      
+       
+        if(loopObj[3] === undefined){
+            fourth.style.display = 'none'
+        }else{
+            fourth.style.display ='block'
+            fourth.textContent = loopObj[3].search.toUpperCase()
+        }
+        
+       
+        
+        if (loopObj[4] === undefined){
+            fifth.style.display = 'none'
+        }else{
+            fifth.style.display ='block'
+            fifth.textContent =  loopObj[4].search.toUpperCase()
+        }
+
+       
+      
+        if (loopObj[5] === undefined){
+            sixth.style.display = 'none'
+        }else{
+            sixth.style.display ='block'
+            sixth.textContent = loopObj[5].search.toUpperCase()
+        }
+    
+       
         
     }
 
+ 
+   
 }
 
 
 
 
 function weatherGrab(){
-    
+    renderSearch();
+   
     var geoUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + search.value.trim() + '&limit=1&appid=ac776302cf92a26e15c3c3e4a0381c56'
     fetch(geoUrl)
     .then (function(response){
         return response.json()
     })
     .then(function(data){
-   
+        
         for(i=0; i < data.length; i++){
      var lat = data[i].lat
      var lon = data[i].lon
      var location = document.getElementById('location')
-     location.textContent = data[i].name
+     location.textContent = data[i].name 
         }
      var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&units=imperial&appid=ac776302cf92a26e15c3c3e4a0381c56'
     fetch(requestUrl)
@@ -68,8 +143,8 @@ function weatherGrab(){
         return response.json();
     })
     .then(function(data){
-       
-        
+        var date = moment().tz(data.timezone).format('MMMM, Do, YYYY')
+        currentDay.textContent = date
        weatherList.style.display = 'block'
 
         var temp = data.current.temp
@@ -104,7 +179,7 @@ function weatherGrab(){
         var weather = data.current.weather
         for(i = 0; i < weather.length; i++){
             var icon = weather[i].icon
-            console.log(icon)
+       
         }
 
        var iconUrl = 'http://openweathermap.org/img/wn/' + icon +'@2x.png'
@@ -113,18 +188,20 @@ function weatherGrab(){
 
     })
 
-    var forecastUrl = 'api.openweathermap.org/data/2.5/forecast?lat=' + lat+ '&lon=' + lon + '&appid=ac776302cf92a26e15c3c3e4a0381c56'
-    fetch(forecastUrl)
-    .then(function(response){
-        return response.json();
-    })
-    .then(function(data){
-        console.log(data)
-    })
+    // var forecastUrl = 'api.openweathermap.org/data/2.5/forecast?lat=' + lat+ '&lon=' + lon + '&appid=ac776302cf92a26e15c3c3e4a0381c56'
+    // fetch(forecastUrl)
+    // .then(function(response){
+    //     return response.json();
+    // })
+    // .then(function(data){
+        
+    // })
 
 
 
     })
+    weatherBox.style.display = 'block'
+    
 
 }
 
@@ -144,7 +221,49 @@ if (searchValue.length == 0){
 }
 })
 
-// renderSearch();
+
+first.addEventListener('click', function(){
+    search.value = first.textContent
+    weatherGrab();
+})
+
+second.addEventListener('click', function(){
+   search.value = second.textContent
+    weatherGrab();
+})
+
+third.addEventListener('click', function(){
+    search.value = third.textContent
+    weatherGrab();
+})
+
+fourth.addEventListener('click', function(){
+    search.value = fourth.textContent
+    weatherGrab();
+})
+
+fifth.addEventListener('click', function(){
+    search.value = fifth.textContent
+    weatherGrab();
+})
+
+sixth.addEventListener('click', function(){
+    search.value = sixth.textContent
+    weatherGrab();
+})
+
+clear.addEventListener('click', function(){
+    searchList.style.display = 'none'
+    localStorage.clear();
+})
+
+
+
+
+
+
+
+
 
 
 
