@@ -143,7 +143,8 @@ function weatherGrab(){
         return response.json();
     })
     .then(function(data){
-        var date = moment().tz(data.timezone).format('MMMM, Do, YYYY')
+        console.log(data)
+        var date = moment().tz(data.timezone).format('MMMM Do, YYYY')
         currentDay.textContent = date
        weatherList.style.display = 'block'
 
@@ -160,19 +161,28 @@ function weatherGrab(){
         currentHumidity = document.getElementById('current_humidity')
         currentHumidity.textContent = 'Humidity: ' +  humidity + '%'
         currentUv = document.getElementById('current_uv')
-        currentUv.textContent = 'UV Index: ' + uv
+        currentUv.textContent = 'UV Index: ' 
+        mark = document.createElement('MARK')
+        mark.textContent = uv
+        currentUv.appendChild(mark)
+        
         
         if(uv < 3){
-            currentUv.style.backgroundColor = 'green'
-        }else if (uv < 6){
-            currentUv.style.backgroundColor = 'yellow'
+            mark.classList.add('bg-success')
+            mark.classList.add('rounded')
+         }else if (uv < 6){
+            mark.classList.add('bg-warning')
+            mark.classList.add('rounded')
         }else if (uv < 8){
-            currentUv.style.backgroundColor = 'orange'
+            mark.style.backgroundColor = 'orange'
+            mark.classList.add('rounded')
         }else if (uv < 11){
-            currentUv.style.backgroundColor = 'red'
+            mark.classList.add('bg-danger')
+            mark.classList.add('rounded')
 
         }else if (uv > 10.9){
-            currentUv.style.backgroundColor = 'purple'
+            mark.style.backgroundColor = 'purple'
+            mark.classList.add('rounded')
         }
 
 
@@ -186,20 +196,123 @@ function weatherGrab(){
        var weatherCon = document.getElementById('weathercon')
        weatherCon.src = iconUrl  
 
-    })
+       
 
-    // var forecastUrl = 'api.openweathermap.org/data/2.5/forecast?lat=' + lat+ '&lon=' + lon + '&appid=ac776302cf92a26e15c3c3e4a0381c56'
-    // fetch(forecastUrl)
-    // .then(function(response){
-    //     return response.json();
-    // })
-    // .then(function(data){
+    //    five day forecast
+        var day1 = document.getElementById('day1')
+        day1.textContent = moment().tz(data.timezone).add(1,'days').format('MM/DD/YY')
+
+        var day1Icon = document.getElementById('day1Icon')
+        day1Icon.src = 'http://openweathermap.org/img/wn/' + data.daily[0].weather[0].icon +'@2x.png'
+
+        var oneTemp = document.getElementById('oneTemp')
+        oneTemp.textContent = 'Temp: ' + data.daily[0].temp.day + '°F'
+
+        var oneWind = document.getElementById('oneWind')
+        oneWind.textContent = 'Wind: ' + data.daily[0].wind_speed + ' ' + 'MPH'
+
+        var oneHumidity = document.getElementById('oneHumidity')
+        oneHumidity.textContent = 'Humidity: ' + data.daily[0].humidity + '%'
+
+
+        var day2Weather = data.daily[1].weather
+
+        for(i=0; i < day2Weather.length; i++){
+            var icon2 = day2Weather[i].icon
+        }
         
-    // })
+        var day2 = document.getElementById('day2')
+        day2.textContent = moment().tz(data.timezone).add(2,'days').format('MM/DD/YY')
 
+        var day2Icon = document.getElementById('day2Icon')
+        day2Icon.src = 'http://openweathermap.org/img/wn/' + icon2 +'@2x.png'
+
+        var twoTemp = document.getElementById('twoTemp')
+        twoTemp.textContent = 'Temp: ' + data.daily[1].temp.day + '°F'
+
+        var twoWind = document.getElementById('twoWind')
+        twoWind.textContent = 'Wind: ' + data.daily[1].wind_speed + ' ' + 'MPH'
+
+        var twoHumidity = document.getElementById('twoHumidity')
+        twoHumidity.textContent = 'Humidity: ' + data.daily[1].humidity + '%'
+
+        
+        var day3Weather = data.daily[2].weather
+
+        for(i=0; i < day3Weather.length; i++){
+            var icon3 = day3Weather[i].icon
+        }
+        
+        var day3 = document.getElementById('day3')
+        day3.textContent = moment().tz(data.timezone).add(3,'days').format('MM/DD/YY')
+
+        var day3Icon = document.getElementById('day3Icon')
+        day3Icon.src = 'http://openweathermap.org/img/wn/' + icon3 +'@2x.png'
+
+        var threeTemp = document.getElementById('threeTemp')
+        threeTemp.textContent = 'Temp: ' + data.daily[2].temp.day + '°F'
+
+        var threeWind = document.getElementById('threeWind')
+        threeWind.textContent = 'Wind: ' + data.daily[2].wind_speed + ' ' + 'MPH'
+
+        var threeHumidity = document.getElementById('threeHumidity')
+        threeHumidity.textContent = 'Humidity: ' + data.daily[2].humidity + '%'
+
+
+
+
+        var day4Weather = data.daily[3].weather
+
+        for(i=0; i < day4Weather.length; i++){
+            var icon4 = day4Weather[i].icon
+        }
+        
+        var day4 = document.getElementById('day4')
+        day4.textContent = moment().tz(data.timezone).add(4,'days').format('MM/DD/YY')
+
+        var day4Icon = document.getElementById('day4Icon')
+        day4Icon.src = 'http://openweathermap.org/img/wn/' + icon4 +'@2x.png'
+
+        var fourTemp = document.getElementById('fourTemp')
+        fourTemp.textContent = 'Temp: ' + data.daily[3].temp.day + '°F'
+
+        var fourWind = document.getElementById('fourWind')
+        fourWind.textContent = 'Wind: ' + data.daily[3].wind_speed + ' ' + 'MPH'
+
+        var fourHumidity = document.getElementById('fourHumidity')
+        fourHumidity.textContent = 'Humidity: ' + data.daily[3].humidity + '%'
+
+
+        var day5Weather = data.daily[4].weather
+
+        for(i=0; i < day5Weather.length; i++){
+            var icon5 = day5Weather[i].icon
+        }
+        
+        var day5 = document.getElementById('day5')
+        day5.textContent = moment().tz(data.timezone).add(5,'days').format('MM/DD/YY')
+
+        var day5Icon = document.getElementById('day5Icon')
+        day5Icon.src = 'http://openweathermap.org/img/wn/' + icon5 +'@2x.png'
+
+        var fiveTemp = document.getElementById('fiveTemp')
+        fiveTemp.textContent = 'Temp: ' + data.daily[4].temp.day + '°F'
+
+        var fiveWind = document.getElementById('fiveWind')
+        fiveWind.textContent = 'Wind: ' + data.daily[4].wind_speed + ' ' + 'MPH'
+
+        var fiveHumidity = document.getElementById('fiveHumidity')
+        fiveHumidity.textContent = 'Humidity: ' + data.daily[4].humidity + '%'
 
 
     })
+
+    
+
+    
+
+    })
+
     weatherBox.style.display = 'block'
     
 
@@ -255,6 +368,7 @@ sixth.addEventListener('click', function(){
 clear.addEventListener('click', function(){
     searchList.style.display = 'none'
     localStorage.clear();
+    
 })
 
 
