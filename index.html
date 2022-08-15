@@ -27,13 +27,13 @@
    
   </header>
 
-  <body class='bg-primary bg-opacity-75'>
+  <body class='bg-primary bg-opacity-75 d-flex flex-column min-vh-100'>
     <main>
-    <div class="container text-center">
-      <div class="row align-items-center">
 
-
-        <div class="col-3 align-items-center vh-100">
+      <div class="container text-center">
+        
+        <div class="row">
+          <div class="col-3 ">
          <h2>Search for a City:</h2>
           <form id="form" class="form-group">
             <input type="text" class="form-control" placeholder="New York" id="search" />
@@ -60,11 +60,18 @@
             <br />
             <button id="clear" class="btn btn-primary">Clear History</button>
           </div>
+
+        <!-- search col -->
         </div>
+
+
         
-        <div class="col vh-100">
+          <div class="col">
+
           <div id="weatherbox" class='bg-dark bg-opacity-75 text-light border border-light border-2 rounded'>
+            <br>
             <h3 id="location"></h3>
+            <br>
             <h4 id="current_day"></h4>
             <img id="weathercon" />
             <ul id="weatherlist">
@@ -78,100 +85,131 @@
               <br>
             </ul>
           </div>
+
+          <br>
+
+
+          <div id="fiveDay" class="container text-center">
+
+            <div class="row">
+            <div class="col">
+      
+              <div id="plusOne" class="bg-secondary bg-opacity-75 text-light border border-light border-2 rounded">
+                
+                <p id="day1"></p>
+                <img id="day1Icon">
+                <ul id="day1List"></ul>
+                <li id="oneTemp"></li>
+                <br>
+                <li id="oneWind"></li>
+                <br>
+                <li id="oneHumidity"></li>
+                <br>
+              </div>
+      
+            </div>
+           
+             
+      
+             
+             <div class="col">
+      
+              <div id="plusTwo" class="bg-secondary bg-opacity-75 text-light border border-light border-2 rounded">
+                <p id="day2"></p>
+                <img id="day2Icon">
+                <ul id="day2List"></ul>
+                <li id="twoTemp"></li>
+                <br>
+                <li id="twoWind"></li>
+                <br>
+                <li id="twoHumidity"></li>
+                <br>
+              </div>
+      
+            </div>
+            
+             
+      
+            
+              <div class="col">
+      
+              <div id="plusThree" class="bg-secondary bg-opacity-75 text-light border border-light border-2 rounded">
+                <p id="day3"></p>
+                <img id="day3Icon">
+                <ul id="day3List"></ul>
+                <li id="threeTemp"></li>
+                <br>
+                <li id="threeWind"></li>
+                <br>
+                <li id="threeHumidity"></li>
+                <br>
+              </div>
+      
+            </div>
+             
+      
+             
+              <div class="col">
+      
+              <div id="plusFour" class="bg-secondary bg-opacity-75 text-light border border-light border-2 rounded">
+                <p id="day4"></p>
+                <img id="day4Icon">
+                <ul id="day4List"></ul>
+                <li id="fourTemp"></li>
+                <br>
+                <li id="fourWind"></li>
+                <br>
+                <li id="fourHumidity"></li>
+                <br>
+              </div>
+      
+            </div>
+             
+      
+              
+              <div class="col">
+      
+              <div id="plusFive" class="bg-secondary bg-opacity-75 text-light border border-light border-2 rounded">
+                <p id="day5"></p>
+                <img id="day5Icon">
+                <ul id="day5List"></ul>
+                <li id="fiveTemp"></li>
+                <br>
+                <li id="fiveWind"></li>
+                <br>
+                <li id="fiveHumidity"></li>
+                <br>
+              </div>
+      
+              <!--five day row -->
+            </div>
           </div>
 
-      
-      </div>
 
-      
-          
+
+
+          <!-- weather col -->
         </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="container text-center">
-      <div class="row align-items-center">
-      <div id="fiveDay">
-
-        <div class="col">
-        <div id="plusOne">
-          <p id="day1"></p>
-          <img id="day1Icon">
-          <ul id="day1List"></ul>
-          <li id="oneTemp"></li>
-          <li id="oneWind"></li>
-          <li id="oneHumidity"></li>
+        <!-- main row -->
         </div>
-       </div>
 
-       
-        <div class="col">
-        <div id="plusTwo">
-          <p id="day2"></p>
-          <img id="day2Icon">
-          <ul id="day2List"></ul>
-          <li id="twoTemp"></li>
-          <li id="twoWind"></li>
-          <li id="twoHumidity"></li>
-        </div>
-       </div>
-
-        
-        <div class="col">
-        <div id="plusThree">
-          <p id="day3"></p>
-          <img id="day3Icon">
-          <ul id="day3List"></ul>
-          <li id="threeTemp"></li>
-          <li id="threeWind"></li>
-          <li id="threeHumidity"></li>
-        </div>
-       </div>
-
-       
-        <div class="col">
-        <div id="plusFour">
-          <p id="day4"></p>
-          <img id="day4Icon">
-          <ul id="day4List"></ul>
-          <li id="fourTemp"></li>
-          <li id="fourWind"></li>
-          <li id="fourHumidity"></li>
-        </div>
-       </div>
-
-        
-        <div class="col">
-        <div id="plusFive">
-          <p id="day5"></p>
-          <img id="day5Icon">
-          <ul id="day5List"></ul>
-          <li id="fiveTemp"></li>
-          <li id="fiveWind"></li>
-          <li id="fiveHumidity"></li>
-        </div>
-      </div>
-      </div>
-    </div>
-
-
-
-    
-
-
-
-
-
-
-
+         <!-- main container -->
+      </div> 
+         
+       <br>     
 </main>
-<footer class='text-center p-2 bg-light bg-opacity-75 w-auto text-dark'>
+
+<br>
+
+<footer class='text-center bg-light bg-opacity-75 w-auto mt-auto text-dark '>
   <h5> Created by Gregory Johnston</h5>
   <p> &copy; 2022</p>
 </footer>
+
     <script src="./assets/js/moment.js"></script>
     <script src="./assets/js/moment-timezone-with-data-10-year-range.js"></script>
     <script src="./assets/js/logic.js"></script>
+
   </body>
 </html>

@@ -143,7 +143,6 @@ function weatherGrab(){
         return response.json();
     })
     .then(function(data){
-        console.log(data)
         var date = moment().tz(data.timezone).format('MMMM Do, YYYY')
         currentDay.textContent = date
        weatherList.style.display = 'block'
@@ -199,6 +198,11 @@ function weatherGrab(){
        
 
     //    five day forecast
+        var fiveDay = document.getElementById('fiveDay')
+        fiveDay.style.display = 'block'
+        fiveDay.style.listStyle = 'none'
+
+
         var day1 = document.getElementById('day1')
         day1.textContent = moment().tz(data.timezone).add(1,'days').format('MM/DD/YY')
 
