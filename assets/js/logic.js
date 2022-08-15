@@ -124,7 +124,7 @@ function renderSearch(){
 function weatherGrab(){
     renderSearch();
    
-    var geoUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + search.value.trim() + '&limit=1&appid=ac776302cf92a26e15c3c3e4a0381c56'
+    var geoUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + search.value.trim() + '&limit=1&appid=ac776302cf92a26e15c3c3e4a0381c56'
     fetch(geoUrl)
     .then (function(response){
         return response.json()
@@ -191,7 +191,7 @@ function weatherGrab(){
        
         }
 
-       var iconUrl = 'http://openweathermap.org/img/wn/' + icon +'@2x.png'
+       var iconUrl = 'https://openweathermap.org/img/wn/' + icon +'@2x.png'
        var weatherCon = document.getElementById('weathercon')
        weatherCon.src = iconUrl  
 
@@ -207,7 +207,7 @@ function weatherGrab(){
         day1.textContent = moment().tz(data.timezone).add(1,'days').format('MM/DD/YY')
 
         var day1Icon = document.getElementById('day1Icon')
-        day1Icon.src = 'http://openweathermap.org/img/wn/' + data.daily[0].weather[0].icon +'@2x.png'
+        day1Icon.src = 'https://openweathermap.org/img/wn/' + data.daily[0].weather[0].icon +'@2x.png'
 
         var oneTemp = document.getElementById('oneTemp')
         oneTemp.textContent = 'Temp: ' + data.daily[0].temp.day + '°F'
@@ -229,7 +229,7 @@ function weatherGrab(){
         day2.textContent = moment().tz(data.timezone).add(2,'days').format('MM/DD/YY')
 
         var day2Icon = document.getElementById('day2Icon')
-        day2Icon.src = 'http://openweathermap.org/img/wn/' + icon2 +'@2x.png'
+        day2Icon.src = 'https://openweathermap.org/img/wn/' + icon2 +'@2x.png'
 
         var twoTemp = document.getElementById('twoTemp')
         twoTemp.textContent = 'Temp: ' + data.daily[1].temp.day + '°F'
@@ -251,7 +251,7 @@ function weatherGrab(){
         day3.textContent = moment().tz(data.timezone).add(3,'days').format('MM/DD/YY')
 
         var day3Icon = document.getElementById('day3Icon')
-        day3Icon.src = 'http://openweathermap.org/img/wn/' + icon3 +'@2x.png'
+        day3Icon.src = 'https://openweathermap.org/img/wn/' + icon3 +'@2x.png'
 
         var threeTemp = document.getElementById('threeTemp')
         threeTemp.textContent = 'Temp: ' + data.daily[2].temp.day + '°F'
@@ -275,7 +275,7 @@ function weatherGrab(){
         day4.textContent = moment().tz(data.timezone).add(4,'days').format('MM/DD/YY')
 
         var day4Icon = document.getElementById('day4Icon')
-        day4Icon.src = 'http://openweathermap.org/img/wn/' + icon4 +'@2x.png'
+        day4Icon.src = 'https://openweathermap.org/img/wn/' + icon4 +'@2x.png'
 
         var fourTemp = document.getElementById('fourTemp')
         fourTemp.textContent = 'Temp: ' + data.daily[3].temp.day + '°F'
@@ -297,7 +297,7 @@ function weatherGrab(){
         day5.textContent = moment().tz(data.timezone).add(5,'days').format('MM/DD/YY')
 
         var day5Icon = document.getElementById('day5Icon')
-        day5Icon.src = 'http://openweathermap.org/img/wn/' + icon5 +'@2x.png'
+        day5Icon.src = 'https://openweathermap.org/img/wn/' + icon5 +'@2x.png'
 
         var fiveTemp = document.getElementById('fiveTemp')
         fiveTemp.textContent = 'Temp: ' + data.daily[4].temp.day + '°F'
