@@ -1,5 +1,4 @@
 
-
 // variables
 var search = document.getElementById('search')
 
@@ -31,6 +30,10 @@ var sixth = document.getElementById('search6')
 
 var clear = document.getElementById('clear')
 
+
+
+
+// stores search query to local storage
 function storeSearch(){
     var allSearches = JSON.parse(localStorage.getItem('allSearches'));
 
@@ -45,6 +48,7 @@ function storeSearch(){
 }
 
 
+// renders six most recent searches below search bar
 function renderSearch(){
     searchHistory.style.display = 'block'
     
@@ -120,10 +124,11 @@ function renderSearch(){
 
 
 
-
+// grabs current weather and future conditions 
 function weatherGrab(){
     renderSearch();
    
+    // uses geo api to convert query to their respective lattitude and longitude
     var geoUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + search.value.trim() + '&limit=1&appid=ac776302cf92a26e15c3c3e4a0381c56'
     fetch(geoUrl)
     .then (function(response){
@@ -137,6 +142,7 @@ function weatherGrab(){
      var location = document.getElementById('location')
      location.textContent = data[i].name 
         }
+        // pulls current conditions for city query
      var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&units=imperial&appid=ac776302cf92a26e15c3c3e4a0381c56'
     fetch(requestUrl)
     .then(function(response){
@@ -188,26 +194,29 @@ function weatherGrab(){
         var weather = data.current.weather
         for(i = 0; i < weather.length; i++){
             var icon = weather[i].icon
+            var currentAlt = weather[i].main
        
         }
 
        var iconUrl = 'https://openweathermap.org/img/wn/' + icon +'@2x.png'
        var weatherCon = document.getElementById('weathercon')
        weatherCon.src = iconUrl  
+       weatherCon.alt = currentAlt
 
        
 
-    //    five day forecast
+    //    five day forecast of city query
         var fiveDay = document.getElementById('fiveDay')
         fiveDay.style.display = 'block'
         fiveDay.style.listStyle = 'none'
 
-
+      
         var day1 = document.getElementById('day1')
         day1.textContent = moment().tz(data.timezone).add(1,'days').format('MM/DD/YY')
 
         var day1Icon = document.getElementById('day1Icon')
         day1Icon.src = 'https://openweathermap.org/img/wn/' + data.daily[0].weather[0].icon +'@2x.png'
+        day1Icon.alt = data.daily[0].weather[0].main
 
         var oneTemp = document.getElementById('oneTemp')
         oneTemp.textContent = 'Temp: ' + data.daily[0].temp.day + '°F'
@@ -223,6 +232,7 @@ function weatherGrab(){
 
         for(i=0; i < day2Weather.length; i++){
             var icon2 = day2Weather[i].icon
+            var alt2 = day2Weather[i].main
         }
         
         var day2 = document.getElementById('day2')
@@ -230,6 +240,8 @@ function weatherGrab(){
 
         var day2Icon = document.getElementById('day2Icon')
         day2Icon.src = 'https://openweathermap.org/img/wn/' + icon2 +'@2x.png'
+        day2Icon.alt = alt2
+        
 
         var twoTemp = document.getElementById('twoTemp')
         twoTemp.textContent = 'Temp: ' + data.daily[1].temp.day + '°F'
@@ -245,6 +257,7 @@ function weatherGrab(){
 
         for(i=0; i < day3Weather.length; i++){
             var icon3 = day3Weather[i].icon
+            var alt3 = day3Weather[i].main
         }
         
         var day3 = document.getElementById('day3')
@@ -252,6 +265,8 @@ function weatherGrab(){
 
         var day3Icon = document.getElementById('day3Icon')
         day3Icon.src = 'https://openweathermap.org/img/wn/' + icon3 +'@2x.png'
+        day3Icon.alt = alt3
+       
 
         var threeTemp = document.getElementById('threeTemp')
         threeTemp.textContent = 'Temp: ' + data.daily[2].temp.day + '°F'
@@ -269,6 +284,7 @@ function weatherGrab(){
 
         for(i=0; i < day4Weather.length; i++){
             var icon4 = day4Weather[i].icon
+            var alt4 = day4Weather[i].main
         }
         
         var day4 = document.getElementById('day4')
@@ -276,6 +292,8 @@ function weatherGrab(){
 
         var day4Icon = document.getElementById('day4Icon')
         day4Icon.src = 'https://openweathermap.org/img/wn/' + icon4 +'@2x.png'
+        day4Icon.alt = alt4
+       
 
         var fourTemp = document.getElementById('fourTemp')
         fourTemp.textContent = 'Temp: ' + data.daily[3].temp.day + '°F'
@@ -291,6 +309,7 @@ function weatherGrab(){
 
         for(i=0; i < day5Weather.length; i++){
             var icon5 = day5Weather[i].icon
+            var alt5 = day5Weather[i].main
         }
         
         var day5 = document.getElementById('day5')
@@ -298,6 +317,7 @@ function weatherGrab(){
 
         var day5Icon = document.getElementById('day5Icon')
         day5Icon.src = 'https://openweathermap.org/img/wn/' + icon5 +'@2x.png'
+        day5Icon.alt = alt5
 
         var fiveTemp = document.getElementById('fiveTemp')
         fiveTemp.textContent = 'Temp: ' + data.daily[4].temp.day + '°F'
@@ -324,7 +344,9 @@ function weatherGrab(){
 
 
 
+// event listeners 
 
+// submits query 
 formEl.addEventListener('submit', function(event){
     var searchValue = search.value.trim();
 if (searchValue.length == 0){
@@ -338,7 +360,7 @@ if (searchValue.length == 0){
 }
 })
 
-
+// allows rendered previous searchs to pass their current value into the weatherGrab function 
 first.addEventListener('click', function(){
     search.value = first.textContent
     weatherGrab();
@@ -369,6 +391,8 @@ sixth.addEventListener('click', function(){
     weatherGrab();
 })
 
+
+// clears local storage and rendered previous search list 
 clear.addEventListener('click', function(){
     searchList.style.display = 'none'
     localStorage.clear();
