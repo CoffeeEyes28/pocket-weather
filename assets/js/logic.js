@@ -135,7 +135,7 @@ function weatherGrab(){
         return response.json()
     })
     .then(function(data){
-        
+       
         for(i=0; i < data.length; i++){
      var lat = data[i].lat
      var lon = data[i].lon
@@ -149,6 +149,7 @@ function weatherGrab(){
         return response.json();
     })
     .then(function(data){
+     
         var date = moment().tz(data.timezone).format('MMMM Do, YYYY')
         currentDay.textContent = date
        weatherList.style.display = 'block'
@@ -401,7 +402,16 @@ clear.addEventListener('click', function(){
 
 
 
+function init(){
+    if (localStorage.getItem('allSearches') === null ){
+   return;
+} else {
+    renderSearch();
+}
 
+}
+
+init();
 
 
 
